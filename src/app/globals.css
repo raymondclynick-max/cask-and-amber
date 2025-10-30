@@ -3,67 +3,158 @@
 @tailwind utilities;
 
 /* ===== Cask & Amber — Globals ===== */
-:root{
-  --lux-bg:#0a0a0a;
-  --lux-ink:#f3efe9;
-  --lux-gold:#d8ba74;
-  --lux-gold-deep:#b6914b;
-  --lux-gold-line:rgba(216,186,116,0.38);
+:root {
+  --lux-bg: #0a0a0a;
+  --lux-ink: #f3efe9;
+  --lux-gold: #d8ba74;
+  --lux-gold-deep: #b6914b;
+  --lux-gold-line: rgba(216,186,116,0.38);
 
-  --font-sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-  --font-serif:"Playfair Display",Georgia,"Times New Roman",serif;
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
+  --font-serif: "Playfair Display", Georgia, "Times New Roman", serif;
 }
 
+/* override / extended palette for header components */
 :root {
   --lux-bg: #000000;
-  --lux-panel: rgba(0,0,0,0.85);
-  --lux-border: rgba(255,215,130,0.18);
-  --lux-gold: rgb(255,215,130);
+  --lux-panel: rgba(0, 0, 0, 0.85);
+  --lux-border: rgba(255, 215, 130, 0.18);
+  --lux-gold: rgb(255, 215, 130);
   --lux-ink: rgb(255 255 255 / 0.9);
-  --lux-text-dim: rgba(255,255,255,0.6);
+  --lux-text-dim: rgba(255, 255, 255, 0.6);
 }
 
-
-html,body{
-  margin:0; padding:0; min-height:100vh;
-  background:var(--lux-bg); color:var(--lux-ink);
-  font-family:var(--font-sans);
-  overflow-x:hidden; scroll-behavior:smooth;
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background: var(--lux-bg);
+  color: var(--lux-ink);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
 /* Headings */
-h1,h2,h3,h4{ font-family:var(--font-serif); color:var(--lux-gold); letter-spacing:.02em; }
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-serif);
+  color: var(--lux-gold);
+  letter-spacing: 0.02em;
+}
 
 /* Links */
-a{ color:var(--lux-gold); text-decoration:none; transition:color .2s ease; }
-a:hover{ color:var(--lux-gold-deep); }
+a {
+  color: var(--lux-gold);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+a:hover {
+  color: var(--lux-gold-deep);
+}
 
 /* Subtle radial texture */
-body{
+body {
   background-image:
-    radial-gradient(1200px 600px at 85% -10%, rgba(216,186,116,0.06), transparent 60%),
-    radial-gradient(900px 400px at -10% 110%, rgba(216,186,116,0.05), transparent 60%);
+    radial-gradient(
+      1200px 600px at 85% -10%,
+      rgba(216, 186, 116, 0.06),
+      transparent 60%
+    ),
+    radial-gradient(
+      900px 400px at -10% 110%,
+      rgba(216, 186, 116, 0.05),
+      transparent 60%
+    );
 }
 
 /* Helper */
-.hr-gold{ border:0; border-top:1px solid var(--lux-gold-line); margin:1.5rem 0; }
-/* === Splash (landing) restore === */
-.splash{position:relative; height:100vh; overflow:hidden; background:#0a0a0a;}
-.splash-video{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; filter:contrast(1.05) saturate(1.05);}
-.splash-mask{position:absolute; inset:0; background:linear-gradient(to bottom, rgba(10,10,10,.05) 0%, rgba(10,10,10,.65) 70%, rgba(10,10,10,.9) 100%); pointer-events:none;}
-.splash-band{position:absolute; left:0; right:0; top:40vh; height:clamp(96px, 20vh, 180px);
-  display:flex; align-items:center; justify-content:center;
-  background:linear-gradient(180deg, rgba(12,12,12,.96), rgba(8,8,8,.96));
-  border-top:1px solid var(--lux-gold-line); border-bottom:1px solid var(--lux-gold-line); z-index:20;}
-.splash-band-inner{width:100%; max-width:1040px; padding:8px 24px; text-align:center;}
-.splash-logo-img{height:clamp(160px, 26vw, 340px); width:auto; margin:0 auto; display:block;
-  filter:drop-shadow(0 4px 14px rgba(0,0,0,.6)) brightness(1.06);}
-.splash-enter{position:absolute; left:0; right:0; top:calc(40vh + clamp(96px, 20vh, 180px) + 20px);
-  display:flex; justify-content:center; z-index:30;}
-/* === EchoVault luxe form skin (works even if Tailwind fails) === */
-.ev-card { padding: 1.25rem; }
-.ev-card h1, .ev-card h2 { color: var(--lux-gold); letter-spacing: .02em; }
+.hr-gold {
+  border: 0;
+  border-top: 1px solid var(--lux-gold-line);
+  margin: 1.5rem 0;
+}
 
+/* === Splash (landing) restore === */
+.splash {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  background: #0a0a0a;
+}
+.splash-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: contrast(1.05) saturate(1.05);
+}
+.splash-mask {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(10, 10, 10, 0.05) 0%,
+    rgba(10, 10, 10, 0.65) 70%,
+    rgba(10, 10, 10, 0.9) 100%
+  );
+  pointer-events: none;
+}
+.splash-band {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 40vh;
+  height: clamp(96px, 20vh, 180px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(
+    180deg,
+    rgba(12, 12, 12, 0.96),
+    rgba(8, 8, 8, 0.96)
+  );
+  border-top: 1px solid var(--lux-gold-line);
+  border-bottom: 1px solid var(--lux-gold-line);
+  z-index: 20;
+}
+.splash-band-inner {
+  width: 100%;
+  max-width: 1040px;
+  padding: 8px 24px;
+  text-align: center;
+}
+.splash-logo-img {
+  height: clamp(160px, 26vw, 340px);
+  width: auto;
+  margin: 0 auto;
+  display: block;
+  filter: drop-shadow(0 4px 14px rgba(0, 0, 0, 0.6)) brightness(1.06);
+}
+.splash-enter {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(40vh + clamp(96px, 20vh, 180px) + 20px);
+  display: flex;
+  justify-content: center;
+  z-index: 30;
+}
+
+/* === EchoVault luxe form skin === */
+.ev-card {
+  padding: 1.25rem;
+}
+.ev-card h1,
+.ev-card h2 {
+  color: var(--lux-gold);
+  letter-spacing: 0.02em;
+}
 .ev-card input[type="text"],
 .ev-card input[type="search"],
 .ev-card input[type="file"]::file-selector-button,
@@ -72,7 +163,7 @@ body{
   -webkit-appearance: none;
   appearance: none;
   width: 100%;
-  background: rgba(255,255,255,0.04);
+  background: rgba(255, 255, 255, 0.04);
   border: 1px solid var(--lux-gold-line);
   color: var(--lux-ink);
   border-radius: 14px;
@@ -80,49 +171,73 @@ body{
   font-size: 14px;
   outline: none;
 }
-
-.ev-card input[type="search"]{ max-width: 420px; }
-
-.ev-card textarea{ min-height: 96px; resize: vertical; }
-
-.ev-card input[type="file"]{ border: none; background: transparent; padding: 0; }
-.ev-card input[type="file"]::file-selector-button{
+.ev-card input[type="search"] {
+  max-width: 420px;
+}
+.ev-card textarea {
+  min-height: 96px;
+  resize: vertical;
+}
+.ev-card input[type="file"] {
+  border: none;
+  background: transparent;
+  padding: 0;
+}
+.ev-card input[type="file"]::file-selector-button {
   cursor: pointer;
   border-radius: 999px;
   border: 1px solid var(--lux-gold-line);
-  background: linear-gradient(180deg,var(--lux-gold),var(--lux-gold-deep));
+  background: linear-gradient(
+    180deg,
+    var(--lux-gold),
+    var(--lux-gold-deep)
+  );
   color: #0b0b0b;
   padding: 6px 12px;
   margin-right: 10px;
 }
-
 .ev-card .ev-btn,
 .ev-card button {
   cursor: pointer;
   border-radius: 12px;
   border: 1px solid transparent;
-  background: linear-gradient(180deg,var(--lux-gold),var(--lux-gold-deep));
+  background: linear-gradient(
+    180deg,
+    var(--lux-gold),
+    var(--lux-gold-deep)
+  );
   color: #0b0b0b;
   padding: 8px 14px;
   font-size: 14px;
   font-weight: 600;
-  letter-spacing: .02em;
-  box-shadow: 0 8px 24px rgba(216,186,116,0.18);
+  letter-spacing: 0.02em;
+  box-shadow: 0 8px 24px rgba(216, 186, 116, 0.18);
 }
 .ev-card .ev-btn.ghost,
-.ev-card button.ghost{
+.ev-card button.ghost {
   background: transparent;
   color: var(--lux-ink);
   border-color: var(--lux-gold-line);
   box-shadow: none;
 }
-
 .ev-chip {
-  display:inline-block; padding: 4px 8px; font-size:10px;
-  background: rgba(255,255,255,0.05);
-  border:1px solid var(--lux-gold-line); border-radius: 999px;
+  display: inline-block;
+  padding: 4px 8px;
+  font-size: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--lux-gold-line);
+  border-radius: 999px;
 }
 
 /* card grids and separators */
-.ev-section { border: 1px solid var(--lux-gold-line); border-radius: 18px; background: rgba(255,255,255,0.03); padding: 16px; }
-.ev-sep { height:1px; background: var(--lux-gold-line); opacity:.6; }
+.ev-section {
+  border: 1px solid var(--lux-gold-line);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 16px;
+}
+.ev-sep {
+  height: 1px;
+  background: var(--lux-gold-line);
+  opacity: 0.6;
+}

@@ -5,40 +5,29 @@ import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
 import { Menu, X } from "lucide-react";
 
-/*
-Behavior:
-- Fixed header bar on top of screen.
-- Burger toggles a floating navigation panel.
-- Outside click and Escape close the panel.
-*/
-
 export default function SiteHeader() {
   const [open, setOpen] = useState(false);
   const panelRef = useRef<HTMLDivElement | null>(null);
 
-  // Close when clicking outside the menu panel
+  // close on outside click
   useEffect(() => {
     function onClick(e: MouseEvent) {
       if (!panelRef.current) return;
       if (panelRef.current.contains(e.target as Node)) return;
       setOpen(false);
     }
-    if (open) {
-      document.addEventListener("mousedown", onClick);
-    }
+    if (open) document.addEventListener("mousedown", onClick);
     return () => {
       document.removeEventListener("mousedown", onClick);
     };
   }, [open]);
 
-  // Close on Escape key
+  // close on Escape
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
       if (e.key === "Escape") setOpen(false);
     }
-    if (open) {
-      document.addEventListener("keydown", onKey);
-    }
+    if (open) document.addEventListener("keydown", onKey);
     return () => {
       document.removeEventListener("keydown", onKey);
     };
@@ -46,14 +35,13 @@ export default function SiteHeader() {
 
   return (
     <>
-      {/* Fixed top header bar */}
+      {/* top fixed bar */}
       <header
         className="fixed top-0 left-0 right-0 z-[1000] flex items-center justify-between
         px-4 sm:px-6 lg:px-8 h-14
         bg-[var(--lux-bg,#000000)]/60 backdrop-blur-md
         border-b border-[var(--lux-border,rgba(255,215,130,0.18))]"
       >
-        {/* Brand badge */}
         <Link
           href="/amber-vault"
           className="flex items-center gap-2 text-[11px] font-medium tracking-[0.15em] uppercase
@@ -67,7 +55,6 @@ export default function SiteHeader() {
           </span>
         </Link>
 
-        {/* Burger button */}
         <button
           aria-label={open ? "Close menu" : "Open menu"}
           onClick={() => setOpen(o => !o)}
@@ -86,7 +73,6 @@ export default function SiteHeader() {
         </button>
       </header>
 
-      {/* Dropdown menu panel */}
       {open && (
         <div
           ref={panelRef}
@@ -98,9 +84,7 @@ export default function SiteHeader() {
           ring-1 ring-black/50
           animate-[fadeInMenu_160ms_ease-out]"
         >
-          {/* subtle gold halo ring */}
           <div className="pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-[var(--lux-gold,rgb(255,215,130))]/10" />
-
           <nav className="relative flex flex-col p-3 text-sm text-white">
             <MenuGroup
               heading="Portfolio"
@@ -157,8 +141,6 @@ export default function SiteHeader() {
         </div>
       )}
 
-      {/* spacing div for pages that render this header directly.
-         not used here because layout.tsx will add pt-14 globally */}
       <style jsx global>{`
         @keyframes fadeInMenu {
           0% {
@@ -175,13 +157,11 @@ export default function SiteHeader() {
   );
 }
 
-function MenuGroup({
-  heading,
-  links,
-}: {
+function MenuGroup(props: {
   heading: string;
   links: { label: string; href: string; desc?: string }[];
 }) {
+  const { heading, links } = props;
   return (
     <div className="mb-3">
       <div className="px-2 pb-2 text-[10px] uppercase tracking-[0.2em] text-[var(--lux-gold,rgb(255,215,130))]/70">
@@ -198,15 +178,8 @@ function MenuGroup({
   );
 }
 
-function MenuItem({
-  href,
-  label,
-  desc,
-}: {
-  href: string;
-  label: string;
-  desc?: string;
-}) {
+function MenuItem(props: { href: string; label: string; desc?: string }) {
+  const { href, label, desc } = props;
   return (
     <Link
       href={href}

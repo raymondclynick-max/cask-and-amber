@@ -19,11 +19,9 @@ export const metadata = {
   description: "Time distilled into memory.",
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout(props: { children: React.ReactNode }) {
+  const { children } = props;
+
   return (
     <html
       lang="en"
@@ -31,10 +29,7 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="min-h-dvh bg-[var(--lux-bg)] text-[var(--lux-ink)] antialiased relative">
-        {/* global burger menu header */}
         <HeaderShell />
-
-        {/* push page content below fixed header height (56px ~ h-14) */}
         <div className="pt-14">{children}</div>
       </body>
     </html>
