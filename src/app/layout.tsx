@@ -1,6 +1,7 @@
+// src/app/layout.tsx
 import "./globals.css";
 import { Playfair_Display, Inter } from "next/font/google";
-import SiteHeader from "@/components/SiteHeader"; // ← add this import
+import HeaderShell from "@/components/HeaderShell";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -18,7 +19,11 @@ export const metadata = {
   description: "Time distilled into memory.",
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html
       lang="en"
@@ -26,10 +31,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       suppressHydrationWarning
     >
       <body className="min-h-dvh bg-[var(--lux-bg)] text-[var(--lux-ink)] antialiased relative">
-        {/* Global header */}
-        <SiteHeader />
+        {/* global burger menu header */}
+        <HeaderShell />
 
-        {/* Push page content below header */}
+        {/* push page content below fixed header height (56px ~ h-14) */}
         <div className="pt-14">{children}</div>
       </body>
     </html>

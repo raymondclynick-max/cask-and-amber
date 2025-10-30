@@ -14,6 +14,16 @@
   --font-serif:"Playfair Display",Georgia,"Times New Roman",serif;
 }
 
+:root {
+  --lux-bg: #000000;
+  --lux-panel: rgba(0,0,0,0.85);
+  --lux-border: rgba(255,215,130,0.18);
+  --lux-gold: rgb(255,215,130);
+  --lux-ink: rgb(255 255 255 / 0.9);
+  --lux-text-dim: rgba(255,255,255,0.6);
+}
+
+
 html,body{
   margin:0; padding:0; min-height:100vh;
   background:var(--lux-bg); color:var(--lux-ink);
